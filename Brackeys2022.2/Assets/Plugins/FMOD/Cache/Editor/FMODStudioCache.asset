@@ -15,13 +15,14 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 188210749509698650}
   - {fileID: 8711337924032358166}
-  EditorEvents: []
+  EditorEvents:
+  - {fileID: 5911859265161591411}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8711337924032358166}
   StringsBanks:
   - {fileID: 188210749509698650}
-  cacheTime: 637967068874428342
+  cacheTime: 637967077881533502
   cacheVersion: 131591
 --- !u!114 &188210749509698650
 MonoBehaviour:
@@ -38,11 +39,65 @@ MonoBehaviour:
   Path: Assets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637967068874428342
+  lastModified: 637967077881533502
   FileSizes:
   - Name: 
-    Value: 712
+    Value: 754
   Exists: 1
+--- !u!114 &5911859265161591411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/test
+  m_EditorClassIdentifier: 
+  Path: event:/test
+  Guid:
+    Data1: 1087803250
+    Data2: 1278664515
+    Data3: 1345209262
+    Data4: -1784867985
+  Banks:
+  - {fileID: 8711337924032358166}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 15000
+--- !u!114 &7186995841009515975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/test
+  m_EditorClassIdentifier: 
+  Path: event:/test
+  Guid:
+    Data1: 1087803250
+    Data2: 1278664515
+    Data3: 1345209262
+    Data4: -1784867985
+  Banks:
+  - {fileID: 8711337924032358166}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 15000
 --- !u!114 &8711337924032358166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,6 +113,6 @@ MonoBehaviour:
   Path: Assets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637967068874398370
+  lastModified: 637967077881503493
   FileSizes: []
   Exists: 1
