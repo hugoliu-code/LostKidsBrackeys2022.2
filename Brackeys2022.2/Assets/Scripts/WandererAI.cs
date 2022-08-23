@@ -15,6 +15,9 @@ public class WandererAI : MonoBehaviour
 
     [SerializeField] private float maxStuckTime = 40f;
 
+    public bool chasingPlayer = false;
+    [SerializeField] GameObject player;
+
     IAstarAI ai;
     GameObject enemy;
     private Rigidbody2D rb;
@@ -30,7 +33,14 @@ public class WandererAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Wandering();
+        if (!chasingPlayer)
+        {
+            Wandering();
+        }
+        else
+        {
+            ChasingPlayer();
+        }
         CheckIfStuck();
     }
 
@@ -92,5 +102,10 @@ public class WandererAI : MonoBehaviour
         }
         else
             maxStuckTime = 40f;
+    }
+
+    void ChasingPlayer()
+    {
+        ai.destination = player.transform.position;
     }
 }
