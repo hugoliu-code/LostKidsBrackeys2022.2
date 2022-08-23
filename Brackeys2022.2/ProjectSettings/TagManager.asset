@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Puddles
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Ground
   - Walls
   - Player
-  - 
+  - PlayerWallCollider
   - 
   - 
   - 
@@ -46,6 +47,12 @@ TagManager:
     locked: 0
   - name: Walls
     uniqueID: 3942996595
+    locked: 0
+  - name: Environment
+    uniqueID: 184385801
+    locked: 0
+  - name: Obstacles
+    uniqueID: 879421769
     locked: 0
   - name: Player
     uniqueID: 186254709
