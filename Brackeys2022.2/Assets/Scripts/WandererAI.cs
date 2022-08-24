@@ -19,7 +19,8 @@ public class WandererAI : MonoBehaviour
     public bool chasingPlayer = false;
     [SerializeField] private float maxRange = 100f;
     [SerializeField] LayerMask playerLayer;
-    [SerializeField] bool seePlayer;
+    [SerializeField] private bool seePlayer;
+
     IAstarAI ai;
     GameObject enemy;
     private Rigidbody2D rb;
@@ -35,18 +36,17 @@ public class WandererAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!chasingPlayer)
-            Wandering();
-        else
-            ChasingPlayer();
         CheckIfStuck();
+
         if (CanSeePlayer())
         {
             seePlayer = true;
+            ChasingPlayer();
         }
         else
         {
             seePlayer = false;
+            Wandering();
         }
 
     }
@@ -130,24 +130,21 @@ public class WandererAI : MonoBehaviour
                 val = true;
             else
                 val = false;
+
+            Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.yellow);
         }
         else
         {
             val =  false;
+            Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
         }
 
         return val;
     }
 
-    bool DetectPlayer()
+    public void ActivateTrap(Vector2 trapPos)
     {
-        float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
-
-        if (distToPlayer < maxRange && CanSeePlayer())
-            chasingPlayer = true;
-        else
-            chasingPlayer = false;
-
-        return chasingPlayer;
+        reached = true;
+        ai.destination = player.transform.position;
     }
 }
