@@ -19,7 +19,7 @@ public class WandererAI : MonoBehaviour
     public bool chasingPlayer = false;
     [SerializeField] private float maxRange = 100f;
     [SerializeField] LayerMask playerLayer;
-
+    [SerializeField] bool seePlayer;
     IAstarAI ai;
     GameObject enemy;
     private Rigidbody2D rb;
@@ -40,7 +40,15 @@ public class WandererAI : MonoBehaviour
         else
             ChasingPlayer();
         CheckIfStuck();
-        Debug.Log(CanSeePlayer());
+        if (CanSeePlayer())
+        {
+            seePlayer = true;
+        }
+        else
+        {
+            seePlayer = false;
+        }
+
     }
 
     // Picks a random, different point to go to
@@ -116,7 +124,7 @@ public class WandererAI : MonoBehaviour
 
         bool val = false;
 
-        if (hit.collider != null)
+        if (hit)
         {
             if (hit.collider.gameObject.CompareTag("Player"))
                 val = true;
@@ -125,7 +133,6 @@ public class WandererAI : MonoBehaviour
         }
         else
         {
-            Debug.Log("test");
             val =  false;
         }
 
