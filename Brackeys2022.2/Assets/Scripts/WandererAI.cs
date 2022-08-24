@@ -113,7 +113,6 @@ public class WandererAI : MonoBehaviour
 
     void ChasingPlayer()
     {
-        reached = true;
         ai.destination = player.transform.position;
     }
 
@@ -144,7 +143,6 @@ public class WandererAI : MonoBehaviour
 
     public void ActivateTrap(Vector2 trapPos)
     {
-        reached = true;
         ai.destination = player.transform.position;
     }
 }
