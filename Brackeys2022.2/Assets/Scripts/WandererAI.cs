@@ -143,6 +143,6 @@ public class WandererAI : MonoBehaviour
 
     public void ActivateTrap(Vector2 trapPos)
     {
-        ai.destination = player.transform.position;
+        ai.destination = trapPos;
     }
 }
