@@ -15,8 +15,10 @@ public class WandererAI : MonoBehaviour
 
     [SerializeField] private float maxStuckTime = 40f;
 
-    public bool chasingPlayer = false;
     [SerializeField] GameObject player;
+    public bool chasingPlayer = false;
+    [SerializeField] private float maxRange = 100f;
+    [SerializeField] LayerMask playerLayer;
 
     IAstarAI ai;
     GameObject enemy;
@@ -34,14 +36,11 @@ public class WandererAI : MonoBehaviour
     void Update()
     {
         if (!chasingPlayer)
-        {
             Wandering();
-        }
         else
-        {
             ChasingPlayer();
-        }
         CheckIfStuck();
+        Debug.Log(CanSeePlayer());
     }
 
     // Picks a random, different point to go to
@@ -64,7 +63,7 @@ public class WandererAI : MonoBehaviour
     void Wandering()
     {
         // ai.reachedDestination doesn't work, so I had to access it from another script
-        reached = GameObject.Find("Circle").GetComponent<AIPath>().reachedDestination;
+        reached = GameObject.Find("Monster").GetComponent<AIPath>().reachedDestination;
         // Update the destination of the AI if
         // the AI is not already calculating a path and
         // the ai has reached the end of the path or it has no path at all
@@ -106,6 +105,42 @@ public class WandererAI : MonoBehaviour
 
     void ChasingPlayer()
     {
+        reached = true;
         ai.destination = player.transform.position;
+    }
+
+    bool CanSeePlayer()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, maxRange, playerLayer);
+        Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
+
+        bool val = false;
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.gameObject.CompareTag("Player"))
+                val = true;
+            else
+                val = false;
+        }
+        else
+        {
+            Debug.Log("test");
+            val =  false;
+        }
+
+        return val;
+    }
+
+    bool DetectPlayer()
+    {
+        float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+        if (distToPlayer < maxRange && CanSeePlayer())
+            chasingPlayer = true;
+        else
+            chasingPlayer = false;
+
+        return chasingPlayer;
     }
 }
