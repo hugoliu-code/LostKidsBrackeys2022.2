@@ -19,7 +19,6 @@ public class WandererAI : MonoBehaviour
     public bool chasingPlayer = false;
     [SerializeField] private float maxRange = 100f;
     [SerializeField] LayerMask playerLayer;
-    [SerializeField] private bool seePlayer;
 
     IAstarAI ai;
     GameObject enemy;
@@ -40,12 +39,12 @@ public class WandererAI : MonoBehaviour
 
         if (CanSeePlayer())
         {
-            seePlayer = true;
+
             ChasingPlayer();
         }
         else
         {
-            seePlayer = false;
+
             Wandering();
         }
 

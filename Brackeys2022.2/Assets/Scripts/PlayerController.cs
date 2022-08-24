@@ -25,14 +25,21 @@ public class PlayerController : MonoBehaviour
     private bool pulseOut;
     private bool canPulse;
 
-    private bool isEnteringBox;
-    private bool isInBox;
+    [Header("Components")]
+    [SerializeField] GameObject MonsterCollider;
+    [SerializeField] GameObject spriteObject;
+    
+    [Header("Conditions")]
+    public float enterChestTime;
+    public bool isEnteringBox;
+    public bool isInBox;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentSpeed = runSpeed;
         lightPercentage = 0;
         StartCoroutine(ChangePercentage(1f, 3f));
+        
     }
     void Update()
     {
@@ -81,6 +88,11 @@ public class PlayerController : MonoBehaviour
     #endregion
     private void Movement()
     {
+        if(isInBox || isEnteringBox)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         movementVector = Vector2.zero;
         if (Input.GetKey(KeyCode.A))
             movementVector.x = -1;
@@ -97,6 +109,23 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Running", false);
 
             rb.velocity = movementVector;
+    }
+
+    public void ChestToggle(bool toggle)
+    {
+        //Will turn both the sprite and monster tracker on and off
+        MonsterCollider.SetActive(toggle);
+        spriteObject.SetActive(toggle);
+    }
+    public IEnumerator MovePlayer(Vector2 from, Vector2 to, float time)
+    {
+        float endTime = Time.time + time;
+        float startTime = Time.time;
+        while (Time.time < endTime)
+        {
+            transform.position = Vector2.Lerp(from, to, (Time.time - startTime) / (endTime - startTime));
+            yield return null;
+        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
