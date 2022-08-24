@@ -195,7 +195,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.031894, y: -0.5318756}
+  m_Offset: {x: 0.03345041, y: -0.52564996}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -206,7 +206,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5018111, y: 0.18652678}
+  m_Size: {x: 0.42087707, y: 0.17407537}
   m_EdgeRadius: 0
 --- !u!114 &415553237
 MonoBehaviour:
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 3
-  puddleSpeed: 0.5
+  puddleSpeed: 1
   anim: {fileID: 1421309594}
 --- !u!1 &435328947
 GameObject:
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 435328953}
   - component: {fileID: 435328952}
   - component: {fileID: 435328949}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Puddles
   m_TagString: Puddles
   m_Icon: {fileID: 0}
@@ -13703,7 +13703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1667657306}
   - component: {fileID: 1667657307}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WallCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
