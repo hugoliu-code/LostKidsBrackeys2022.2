@@ -370,6 +370,14 @@ MonoBehaviour:
   runSpeed: 3
   puddleSpeed: 1
   anim: {fileID: 1421309594}
+  innerLight: {fileID: 1739159411}
+  outerLight: {fileID: 2001958133}
+  maxInnerLight: 1.8
+  minInnerLight: 1.6
+  maxOuterLight: 3.4
+  minOuterLight: 2.8
+  pulseTime: 2
+  lightPercentage: 1
 --- !u!1 &435328947
 GameObject:
   m_ObjectHideFlags: 0
@@ -19277,7 +19285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2128720680
 MonoBehaviour:
   m_ObjectHideFlags: 0
