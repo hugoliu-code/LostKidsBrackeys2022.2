@@ -8,6 +8,7 @@ public class ChestScript : MonoBehaviour
     [SerializeField] Transform enterMarker;
     [SerializeField] Transform exitMarker;
     [SerializeField] GameObject physicalCollider;
+    [SerializeField] InteractIcon icon;
     private PlayerController player;
     private Animator anim;
     private void Start()
@@ -21,12 +22,30 @@ public class ChestScript : MonoBehaviour
         {
             ExitChest();
         }
+        if (isInteracting)
+        {
+            icon.HideIcon();
+        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (Input.GetKeyDown(KeyCode.Space) && collision.CompareTag("Player") && !isInteracting)
         {
             EnterChest();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            icon.ShowIcon();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            icon.HideIcon();
         }
     }
     public void Toggle()
@@ -65,7 +84,9 @@ public class ChestScript : MonoBehaviour
         isInteracting = false;
         anim.SetBool("IsOpening", true);
         physicalCollider.SetActive(true);
+
         StartCoroutine(player.ChangePercentage(1f, player.enterChestTime));
     }
+
     
 }

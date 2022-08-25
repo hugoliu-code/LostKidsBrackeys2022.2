@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public bool isEnteringBox;
     public bool isInBox;
     public bool isDead = false;
+    public int keyCount = 0; 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -145,6 +146,14 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         DeathObject.SetActive(true);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Key"))
+        {
+            keyCount++;
+            collision.gameObject.SetActive(false);
+        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

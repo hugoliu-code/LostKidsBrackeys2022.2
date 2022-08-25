@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Puddles
   - SceneManager
+  - Key
+  - Exit
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - PlayerMonsterCollider
   - Puddles
   - Trap
-  - 
+  - Key
   - 
   - 
   - 
@@ -60,4 +62,7 @@ TagManager:
     locked: 0
   - name: Corpse
     uniqueID: 1506817003
+    locked: 0
+  - name: Key
+    uniqueID: 739274209
     locked: 0
