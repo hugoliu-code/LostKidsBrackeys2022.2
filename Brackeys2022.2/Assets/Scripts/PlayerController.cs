@@ -28,11 +28,13 @@ public class PlayerController : MonoBehaviour
     [Header("Components")]
     [SerializeField] GameObject MonsterCollider;
     [SerializeField] GameObject spriteObject;
+    [SerializeField] GameObject DeathObject;
     
     [Header("Conditions")]
     public float enterChestTime;
     public bool isEnteringBox;
     public bool isInBox;
+    public bool isDead = false;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
     #endregion
     private void Movement()
     {
-        if(isInBox || isEnteringBox)
+        if(isInBox || isEnteringBox || isDead)
         {
             rb.velocity = Vector2.zero;
             return;
@@ -126,6 +128,23 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector2.Lerp(from, to, (Time.time - startTime) / (endTime - startTime));
             yield return null;
         }
+    }
+
+    public void Death()
+    {
+        if (isDead)
+        {
+            return;
+        }
+        isDead = true;
+        StopAllCoroutines();
+        StartCoroutine(ChangePercentage(0f, 1f));
+        StartCoroutine("DeathCoroutine");
+    }
+    IEnumerator DeathCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        DeathObject.SetActive(true);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

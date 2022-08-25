@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Puddles
+  - SceneManager
   layers:
   - Default
   - TransparentFX
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 186254709
+    locked: 0
+  - name: Corpse
+    uniqueID: 1506817003
     locked: 0

@@ -17,7 +17,7 @@ public class ChestScript : MonoBehaviour
     }
     private void Update()
     {
-        if (isInteracting && Input.GetKeyDown(KeyCode.Space) && !player.isEnteringBox)
+        if (isInteracting && Input.GetKeyDown(KeyCode.Space) && !player.isEnteringBox && !player.isDead)
         {
             ExitChest();
         }

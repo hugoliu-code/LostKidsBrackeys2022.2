@@ -16,9 +16,14 @@ public class WandererAI : MonoBehaviour
     [SerializeField] private float maxStuckTime = 40f;
 
     [SerializeField] GameObject player;
+    private PlayerController playerScript;
     public bool chasingPlayer = false;
     [SerializeField] private float maxRange = 100f;
     [SerializeField] LayerMask playerLayer;
+
+    [SerializeField] float maxLightEffectDistance = 5f;
+    [SerializeField] float minLightPercentage = 0.3f;
+    [SerializeField] float playerKillDistance = 1f;
 
     IAstarAI ai;
     GameObject enemy;
@@ -30,6 +35,7 @@ public class WandererAI : MonoBehaviour
         ai = GetComponent<IAstarAI>();
         rb = GetComponent<Rigidbody2D>();
         delay = maxWaitTime;
+        playerScript = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -39,17 +45,35 @@ public class WandererAI : MonoBehaviour
 
         if (CanSeePlayer())
         {
-
             ChasingPlayer();
         }
         else
         {
-
             Wandering();
         }
+        UpdatePlayer(); //Checks the player and monster distance, and diminishes the player's light based on distance. If too close, kill the player
 
     }
-
+    private void UpdatePlayer()
+    {
+        if (playerScript.isDead)
+        {
+            return;
+        }
+        float playerDistance = Vector2.Distance(player.transform.position, transform.position);
+        if(!playerScript.isEnteringBox && !playerScript.isInBox && playerDistance < maxLightEffectDistance)
+        {
+            playerScript.SetPercentage(Mathf.Lerp(minLightPercentage, 1, (playerDistance-playerKillDistance) / (maxLightEffectDistance-playerKillDistance)));
+        }
+        if(!playerScript.isEnteringBox &&  !playerScript.isInBox && playerDistance > maxLightEffectDistance)
+        {
+            playerScript.SetPercentage(1f);
+        }
+        if (playerDistance <= playerKillDistance && !playerScript.isInBox)
+        {
+            playerScript.Death();
+        }
+    }
     // Picks a random, different point to go to
     Vector2 PickDest()
     {
