@@ -27004,6 +27004,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0fb025094c10444bac710c28e74cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 4160
 --- !u!1 &1441867570
 GameObject:
   m_ObjectHideFlags: 0
@@ -27438,9 +27441,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1613237566}
   - component: {fileID: 1613237565}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
