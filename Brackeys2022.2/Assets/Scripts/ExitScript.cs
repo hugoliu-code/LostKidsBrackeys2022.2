@@ -15,6 +15,11 @@ public class ExitScript : MonoBehaviour
             if (collision.gameObject.GetComponent<PlayerController>().keyCount >= keysNeeded)
             {
                 sceneManager.LevelNav(nextLevel);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Open_Door");
+            }
+            else
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Locked_Door");
             }
         }
     }

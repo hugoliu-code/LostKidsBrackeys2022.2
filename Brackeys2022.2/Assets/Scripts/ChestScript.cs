@@ -56,17 +56,20 @@ public class ChestScript : MonoBehaviour
             player.isInBox = true;
             player.isEnteringBox = false;
             anim.SetBool("IsOpening", false);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Chest_Open");
         }
         else
         {
             player.ChestToggle(true);
             player.isInBox = false;
             anim.SetBool("IsOpening", false);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Chest_Open");
         }
         
     }
     private void EnterChest()
     {
+        
         isInteracting = true;
         //do the native chest animation
         anim.SetBool("IsOpening", true);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AlarmTrapScript : MonoBehaviour
 {
-    [SerializeField] float trapCooldown = 5f;
+    [SerializeField] float trapCooldown = 2f;
     private Animator anim;
     private float coolDownFinishTime= 0;
     private WandererAI monster;
@@ -21,9 +21,15 @@ public class AlarmTrapScript : MonoBehaviour
     {
         if (collision.CompareTag("Player") && Time.time > coolDownFinishTime)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Button_Down");
             monster.ActivateTrap(transform.position);
             coolDownFinishTime = Time.time + trapCooldown;
+            Invoke("ButtonUpSound", trapCooldown);
         }
+    }
+    private void ButtonUpSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Button_Up");
     }
     void Animation()
     {

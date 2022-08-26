@@ -25,6 +25,9 @@ public class WandererAI : MonoBehaviour
     [SerializeField] float minLightPercentage = 0.3f;
     [SerializeField] float playerKillDistance = 1f;
 
+    [SerializeField] float chaseSpeed = 2.8f;
+    [SerializeField] float wanderSpeed = 1.5f;
+    [SerializeField] AIPath aiPath;
     IAstarAI ai;
     GameObject enemy;
     private Rigidbody2D rb;
@@ -36,6 +39,8 @@ public class WandererAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         delay = maxWaitTime;
         playerScript = player.GetComponent<PlayerController>();
+        StartCoroutine(FootSteps());
+        FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Monster/Heartbeat", gameObject);
     }
 
     // Update is called once per frame
@@ -45,11 +50,18 @@ public class WandererAI : MonoBehaviour
 
         if (CanSeePlayer())
         {
+            if(!chasingPlayer)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Monster/Monster_Screech", transform.position);
+            }
+            chasingPlayer = true;
             ChasingPlayer();
+            aiPath.maxSpeed = chaseSpeed;
         }
         else
         {
             Wandering();
+            ai.maxSpeed = wanderSpeed;
         }
         UpdatePlayer(); //Checks the player and monster distance, and diminishes the player's light based on distance. If too close, kill the player
 
@@ -94,7 +106,7 @@ public class WandererAI : MonoBehaviour
     void Wandering()
     {
         // ai.reachedDestination doesn't work, so I had to access it from another script
-        reached = GameObject.Find("Monster").GetComponent<AIPath>().reachedDestination;
+        reached = GameObject.FindGameObjectWithTag("Monster").GetComponent<AIPath>().reachedDestination;
         // Update the destination of the AI if
         // the AI is not already calculating a path and
         // the ai has reached the end of the path or it has no path at all
@@ -108,7 +120,7 @@ public class WandererAI : MonoBehaviour
 
                 ai.destination = PickDest();
                 ai.SearchPath();
-
+                chasingPlayer = false;
                 delay = Random.Range(0, maxWaitTime);
                 //Debug.Log(delay);
             }
@@ -167,5 +179,23 @@ public class WandererAI : MonoBehaviour
     public void ActivateTrap(Vector2 trapPos)
     {
         ai.destination = trapPos;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Monster/Monster_Screech", transform.position);
+    }
+
+
+    IEnumerator FootSteps()
+    {
+        while (!playerScript.isDead)
+        {
+            if (chasingPlayer)
+            {
+                yield return new WaitForSeconds(Random.Range(0.3f,0.4f));
+            }
+            else
+            {
+                yield return new WaitForSeconds(Random.Range(0.8f, 1f));
+            }
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Monster/Monster_Footsteps", transform.position);
+        }
     }
 }

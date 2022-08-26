@@ -139,20 +139,26 @@ public class PlayerController : MonoBehaviour
         }
         isDead = true;
         StopAllCoroutines();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Death");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Disem");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Monster/Monster_Kill");
         StartCoroutine(ChangePercentage(0f, 1f));
         StartCoroutine("DeathCoroutine");
     }
     IEnumerator DeathCoroutine()
     {
         yield return new WaitForSeconds(2f);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Static_Effect");
         DeathObject.SetActive(true);
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Key"))
         {
             keyCount++;
             collision.gameObject.SetActive(false);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Key");
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

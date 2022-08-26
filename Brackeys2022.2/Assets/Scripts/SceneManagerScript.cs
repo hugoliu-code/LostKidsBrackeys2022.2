@@ -15,7 +15,14 @@ public class SceneManagerScript : MonoBehaviour
         //Time.timeScale = 1f;
         //if (soundOn)
         //click.Play();
-        //FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Confirm");
+        StartCoroutine(LoadLevel(levelName));
+    }
+    public void SceneNav(string levelName)
+    {
+        //Time.timeScale = 1f;
+        //if (soundOn)
+        //click.Play();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Confirm");
         StartCoroutine(LoadLevel(levelName));
     }
     public void FirstLevel()
@@ -52,7 +59,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         transition.SetBool("Start", true);
         yield return new WaitForSeconds(0.2f);
-        //FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Screen");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Scene_Transition");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(LevelName);
     }
