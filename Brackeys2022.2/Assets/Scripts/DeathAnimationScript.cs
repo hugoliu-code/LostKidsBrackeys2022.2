@@ -10,4 +10,8 @@ public class DeathAnimationScript : MonoBehaviour
     {
         DeathScreen.SetActive(true);
     }
+    public void PlaySound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Disem");
+    }
 }

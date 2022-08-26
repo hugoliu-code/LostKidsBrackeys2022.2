@@ -32,6 +32,7 @@ public class WandererAI : MonoBehaviour
     GameObject enemy;
     private Rigidbody2D rb;
 
+    private float stopChasingTime = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,9 +55,14 @@ public class WandererAI : MonoBehaviour
             {
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Monster/Monster_Screech", transform.position);
             }
+            stopChasingTime = Time.time + 1f; 
             chasingPlayer = true;
             ChasingPlayer();
             aiPath.maxSpeed = chaseSpeed;
+        }
+        else if(Time.time <= stopChasingTime)
+        {
+            ChasingPlayer();
         }
         else
         {

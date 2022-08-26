@@ -140,7 +140,6 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         StopAllCoroutines();
         FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Death");
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Disem");
         FMODUnity.RuntimeManager.PlayOneShot("event:/Monster/Monster_Kill");
         StartCoroutine(ChangePercentage(0f, 1f));
         StartCoroutine("DeathCoroutine");
