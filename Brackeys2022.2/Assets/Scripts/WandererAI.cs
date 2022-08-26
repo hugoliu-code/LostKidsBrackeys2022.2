@@ -79,15 +79,15 @@ public class WandererAI : MonoBehaviour
             return;
         }
         float playerDistance = Vector2.Distance(player.transform.position, transform.position);
-        if(!playerScript.isEnteringBox && !playerScript.isInBox && playerDistance < maxLightEffectDistance)
+        if(!playerScript.isEnteringBox && !playerScript.isInBox && !playerScript.isEnteringBox && playerDistance < maxLightEffectDistance)
         {
             playerScript.SetPercentage(Mathf.Lerp(minLightPercentage, 1, (playerDistance-playerKillDistance) / (maxLightEffectDistance-playerKillDistance)));
         }
-        if(!playerScript.isEnteringBox &&  !playerScript.isInBox && playerDistance > maxLightEffectDistance)
+        if(!playerScript.isEnteringBox &&  !playerScript.isInBox && !playerScript.isEnteringBox && playerDistance > maxLightEffectDistance)
         {
             playerScript.SetPercentage(1f);
         }
-        if (playerDistance <= playerKillDistance && !playerScript.isInBox)
+        if (playerDistance <= playerKillDistance && !playerScript.isInBox && !playerScript.isEnteringBox)
         {
             playerScript.Death();
         }

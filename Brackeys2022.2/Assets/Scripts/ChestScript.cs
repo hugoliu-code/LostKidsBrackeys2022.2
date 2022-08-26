@@ -18,7 +18,7 @@ public class ChestScript : MonoBehaviour
     }
     private void Update()
     {
-        if (isInteracting && Input.GetKeyDown(KeyCode.Space) && !player.isEnteringBox && !player.isDead)
+        if (isInteracting && Input.GetKeyDown(KeyCode.Space) && !player.isEnteringBox && !player.isDead && player.isInBox)
         {
             ExitChest();
         }
@@ -29,7 +29,7 @@ public class ChestScript : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Space) && collision.CompareTag("Player") && !isInteracting)
+        if (Input.GetKeyDown(KeyCode.Space) && collision.CompareTag("Player") && !isInteracting && !player.isInBox && !player.isEnteringBox)
         {
             EnterChest();
         }
@@ -87,9 +87,12 @@ public class ChestScript : MonoBehaviour
         isInteracting = false;
         anim.SetBool("IsOpening", true);
         physicalCollider.SetActive(true);
-
+        icon.ShowIcon();
         StartCoroutine(player.ChangePercentage(1f, player.enterChestTime));
     }
-
+    private void InteractOff()
+    {
+        isInteracting = false;
+    }
     
 }
