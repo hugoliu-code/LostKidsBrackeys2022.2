@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RunAnimationSound : MonoBehaviour
 {
-    private float distance = 1f;
+    [SerializeField] private float distance = 0.1f;
+    [SerializeField] private Vector3 offset;
     private string Material = "Dirt";
 
     [SerializeField] private LayerMask layer;
@@ -12,14 +13,14 @@ public class RunAnimationSound : MonoBehaviour
     void FixedUpdate()
     {
         MaterialCheck();
-        Debug.DrawRay(transform.position, Vector2.down * distance, Color.blue);
+        Debug.DrawRay(transform.position + offset, Vector2.down * distance, Color.blue);
     }
 
     void MaterialCheck()
     {
         RaycastHit2D hit;
 
-        hit = Physics2D.Raycast(transform.position, Vector2.down, distance, layer);
+        hit = Physics2D.Raycast(transform.position + offset, Vector2.down, distance, layer);
 
         if (hit.collider)
         {

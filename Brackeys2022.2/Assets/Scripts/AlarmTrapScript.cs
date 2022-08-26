@@ -8,15 +8,18 @@ public class AlarmTrapScript : MonoBehaviour
     private Animator anim;
     private float coolDownFinishTime= 0;
     private WandererAI monster;
+
     private void Start()
     {
         monster = FindObjectOfType<WandererAI>();
         anim = GetComponent<Animator>();
     }
+
     private void Update()
     {
         Animation();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && Time.time > coolDownFinishTime)
@@ -27,13 +30,15 @@ public class AlarmTrapScript : MonoBehaviour
             Invoke("ButtonUpSound", trapCooldown);
         }
     }
+
     private void ButtonUpSound()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Button_Up");
     }
+
     void Animation()
     {
-        if(Time.time < coolDownFinishTime)
+        if (Time.time < coolDownFinishTime)
         {
             anim.SetBool("IsActive", false);
         }
@@ -42,5 +47,4 @@ public class AlarmTrapScript : MonoBehaviour
             anim.SetBool("IsActive", true);
         }
     }
-
 }
