@@ -147,7 +147,10 @@ public class PlayerController : MonoBehaviour
     IEnumerator DeathCoroutine()
     {
         yield return new WaitForSeconds(2f);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Static_Effect");
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Static_Effect");
+        FMOD.Studio.EventInstance Footsteps = FMODUnity.RuntimeManager.CreateInstance("event:/UI/Static_Effect");
+        Footsteps.start();
+        Footsteps.release();
         DeathObject.SetActive(true);
     }
 

@@ -67,6 +67,7 @@ public class WandererAI : MonoBehaviour
         else
         {
             Wandering();
+            chasingPlayer = false;
             ai.maxSpeed = wanderSpeed;
         }
         UpdatePlayer(); //Checks the player and monster distance, and diminishes the player's light based on distance. If too close, kill the player
@@ -126,7 +127,7 @@ public class WandererAI : MonoBehaviour
 
                 ai.destination = PickDest();
                 ai.SearchPath();
-                chasingPlayer = false;
+                
                 delay = Random.Range(0, maxWaitTime);
                 //Debug.Log(delay);
             }
