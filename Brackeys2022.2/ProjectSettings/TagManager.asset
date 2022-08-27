@@ -10,6 +10,8 @@ TagManager:
   - Exit
   - Monster
   - Dirt
+  - Menu_Music
+  - Level_Music
   layers:
   - Default
   - TransparentFX
