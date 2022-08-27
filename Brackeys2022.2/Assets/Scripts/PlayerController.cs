@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
         if(isInBox || isEnteringBox || isDead)
         {
             rb.velocity = Vector2.zero;
+            anim.SetBool("Running", false);
             return;
         }
         movementVector = Vector2.zero;
