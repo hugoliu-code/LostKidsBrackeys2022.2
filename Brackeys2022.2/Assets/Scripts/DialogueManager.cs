@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI dialogueText;
 
+
     private Story currentStory;
 
     public bool dialogueIsPlaying;
@@ -64,8 +65,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            StopCoroutine("DisplayText");
-            dialogueText.text = "";
+            StopAllCoroutines();
             StartCoroutine(DisplayText(currentStory.Continue()));
         }
         else
@@ -75,6 +75,7 @@ public class DialogueManager : MonoBehaviour
     }
     private IEnumerator DisplayText(string text)
     {
+        dialogueText.text = "";
         foreach(char n in text.ToCharArray())
         {
             yield return null;
