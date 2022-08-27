@@ -6516,6 +6516,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &866772464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3431888271341514168, guid: 53acda5ba31253f4882fdb1ab28edba6, type: 3}
+  m_PrefabInstance: {fileID: 9126487584995397144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &866772465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866772464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -800825718
+      Data2: 1233712519
+      Data3: 329880489
+      Data4: -1337765479
+    Path: event:/OST/Level
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &868442894
 GameObject:
   m_ObjectHideFlags: 0
@@ -11324,6 +11359,50 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &870314615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870314617}
+  - component: {fileID: 870314616}
+  m_Layer: 0
+  m_Name: DestroyMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &870314616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870314615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b3e34af59c7814fb24b699ec388d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Menu_Music
+--- !u!4 &870314617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870314615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.7577212, y: 1.4977783, z: -3012.6375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &957782055
 GameObject:
   m_ObjectHideFlags: 0
@@ -19909,6 +19988,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3368986234656007651, guid: 14d8f417547c1b54bbda77a67a483572, type: 3}
   m_PrefabInstance: {fileID: 1322337488}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1322337491 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7642523154205518142, guid: 14d8f417547c1b54bbda77a67a483572, type: 3}
+  m_PrefabInstance: {fileID: 1322337488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1322337492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5884856495272231891, guid: 14d8f417547c1b54bbda77a67a483572, type: 3}
+  m_PrefabInstance: {fileID: 1322337488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1455104430
 GameObject:
   m_ObjectHideFlags: 0
@@ -24717,6 +24812,52 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1514772303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1514772305}
+  - component: {fileID: 1514772304}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1514772304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514772303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38829dba6dd56d64aa8782d9a9a4d481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 1322337492}
+  dialogueText: {fileID: 1322337491}
+  dialogueIsPlaying: 0
+--- !u!4 &1514772305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514772303}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1621967657
 GameObject:
   m_ObjectHideFlags: 0
@@ -44244,5 +44385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level_Music
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3431888271341514168, guid: 53acda5ba31253f4882fdb1ab28edba6, type: 3}
+      propertyPath: m_TagString
+      value: Level_Music
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9126487584621352591, guid: 53acda5ba31253f4882fdb1ab28edba6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 53acda5ba31253f4882fdb1ab28edba6, type: 3}
