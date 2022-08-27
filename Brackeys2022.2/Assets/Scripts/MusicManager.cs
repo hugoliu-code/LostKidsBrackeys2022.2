@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    [SerializeField] private string tag;
-
     // Start is called before the first frame update
     void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag(tag);
+        GameObject[] objs = GameObject.FindGameObjectsWithTag(gameObject.tag);
 
         if (objs.Length > 1)
         {
