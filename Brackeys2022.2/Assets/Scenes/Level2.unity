@@ -25087,6 +25087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 8121330075334046678, guid: efade5ee06540864295a13ed8fc546bf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8121330075334046682, guid: efade5ee06540864295a13ed8fc546bf, type: 3}
       propertyPath: m_RootOrder
       value: 0
