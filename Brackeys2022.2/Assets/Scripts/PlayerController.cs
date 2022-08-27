@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
         lightPercentage = 0;
         StartCoroutine(ChangePercentage(1f, 3f));
         Footsteps = FMODUnity.RuntimeManager.CreateInstance("event:/UI/Static_Effect");
+        Cursor.visible = false;
     }
     void Update()
     {
@@ -148,6 +149,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         //FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Static_Effect");
+        Cursor.visible = true;
         Footsteps.start();
         Footsteps.release();
         DeathObject.SetActive(true);
