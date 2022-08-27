@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     #endregion
     private void Movement()
     {
-        if(isInBox || isEnteringBox || isDead)
+        if(isInBox || isEnteringBox || isDead || DialogueManager.GetInstance().dialogueIsPlaying)
         {
             rb.velocity = Vector2.zero;
             anim.SetBool("Running", false);
