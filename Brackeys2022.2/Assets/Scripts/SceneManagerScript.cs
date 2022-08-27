@@ -9,7 +9,7 @@ public class SceneManagerScript : MonoBehaviour
     //private static FMOD.Studio.EventInstance Music;
 
     //[SerializeField] private AudioSource click;
-
+    
     public void LevelNav(string levelName)
     {
         //Time.timeScale = 1f;
@@ -36,6 +36,7 @@ public class SceneManagerScript : MonoBehaviour
         //Music = FMODUnity.RuntimeManager.CreateInstance("event:/OST/Music");
         //Music.start();
         //Music.release();
+        
     }
 
     public void SettingSelect()

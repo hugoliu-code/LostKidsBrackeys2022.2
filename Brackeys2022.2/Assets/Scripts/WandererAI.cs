@@ -31,7 +31,7 @@ public class WandererAI : MonoBehaviour
     IAstarAI ai;
     GameObject enemy;
     private Rigidbody2D rb;
-
+    private FMOD.Studio.EventInstance heartBeat;
     private float stopChasingTime = -1;
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,10 @@ public class WandererAI : MonoBehaviour
         delay = maxWaitTime;
         playerScript = player.GetComponent<PlayerController>();
         StartCoroutine(FootSteps());
-        FMODUnity.RuntimeManager.PlayOneShotAttached("event:/Monster/Heartbeat", gameObject);
+        //FMODUnity.RuntimeManager.CreateInstance("event:/Monster/Heartbeat");
+        //heartBeat.start();
+        //heartBeat.release(); 
+        //heartBeat.setParameterByName("EndLoop", 0f);
     }
 
     // Update is called once per frame
@@ -90,6 +93,7 @@ public class WandererAI : MonoBehaviour
         }
         if (playerDistance <= playerKillDistance && !playerScript.isInBox && !playerScript.isEnteringBox)
         {
+            //heartBeat.setParameterByName("EndLoop", 1f);
             playerScript.Death();
         }
     }
