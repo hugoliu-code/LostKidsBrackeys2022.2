@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject MonsterCollider;
     [SerializeField] GameObject spriteObject;
     [SerializeField] GameObject DeathObject;
-    
+    private FMOD.Studio.EventInstance Footsteps;
     [Header("Conditions")]
     public float enterChestTime;
     public bool isEnteringBox;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         currentSpeed = runSpeed;
         lightPercentage = 0;
         StartCoroutine(ChangePercentage(1f, 3f));
-        
+        Footsteps = FMODUnity.RuntimeManager.CreateInstance("event:/UI/Static_Effect");
     }
     void Update()
     {
@@ -148,12 +148,14 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         //FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Static_Effect");
-        FMOD.Studio.EventInstance Footsteps = FMODUnity.RuntimeManager.CreateInstance("event:/UI/Static_Effect");
         Footsteps.start();
         Footsteps.release();
         DeathObject.SetActive(true);
     }
-
+    private void OnDestroy()
+    {
+        Footsteps.setParameterByName("EndLoop", 1f);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Key"))

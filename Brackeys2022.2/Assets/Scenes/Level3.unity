@@ -276,7 +276,7 @@ PrefabInstance:
       objectReference: {fileID: 58093215}
     - target: {fileID: 3368986234694355440, guid: 14d8f417547c1b54bbda77a67a483572, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: LevelCOncept1
+      value: Level3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14d8f417547c1b54bbda77a67a483572, type: 3}
@@ -44178,7 +44178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5230538069682195783, guid: d46a8621c4127c241af887955bd7501d, type: 3}
       propertyPath: nextLevel
-      value: MainMenu
+      value: Level4
       objectReference: {fileID: 0}
     - target: {fileID: 5230538069682195783, guid: d46a8621c4127c241af887955bd7501d, type: 3}
       propertyPath: keysNeeded
