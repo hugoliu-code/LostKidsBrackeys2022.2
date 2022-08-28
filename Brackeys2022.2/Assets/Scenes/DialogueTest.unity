@@ -5973,6 +5973,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level_Music
       objectReference: {fileID: 0}
+    - target: {fileID: 3431888271341514168, guid: 53acda5ba31253f4882fdb1ab28edba6, type: 3}
+      propertyPath: m_TagString
+      value: Level_Music
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53acda5ba31253f4882fdb1ab28edba6, type: 3}
 --- !u!1001 &952765372
@@ -42673,7 +42677,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c796b2fed17e5ec4491fa79f1aeb2673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJson: {fileID: 4900000, guid: f69bf08f6e000e8408966e2deb4114ca, type: 3}
+  inkJsonOne: {fileID: 0}
+  inkJsonTwo: {fileID: 0}
 --- !u!114 &2030056035
 MonoBehaviour:
   m_ObjectHideFlags: 0

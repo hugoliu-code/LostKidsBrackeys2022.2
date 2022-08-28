@@ -5181,41 +5181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioDest: event:/Environment/Water_Drips
   permDelay: 26
---- !u!1 &309583750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3431888271341514168, guid: 53acda5ba31253f4882fdb1ab28edba6, type: 3}
-  m_PrefabInstance: {fileID: 686471952}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &309583752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 309583750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -800825718
-      Data2: 1233712519
-      Data3: 329880489
-      Data4: -1337765479
-    Path: event:/OST/Level
-  Event: 
-  PlayEvent: 1
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!4 &332945615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6516070932997949865, guid: 61177b77a2cc4fd49b6a18f527fa50ae, type: 3}

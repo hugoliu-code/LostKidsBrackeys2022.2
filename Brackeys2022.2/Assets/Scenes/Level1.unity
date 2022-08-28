@@ -6516,41 +6516,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &866772464 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3431888271341514168, guid: 53acda5ba31253f4882fdb1ab28edba6, type: 3}
-  m_PrefabInstance: {fileID: 9126487584995397144}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &866772465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866772464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -800825718
-      Data2: 1233712519
-      Data3: 329880489
-      Data4: -1337765479
-    Path: event:/OST/Level
-  Event: 
-  PlayEvent: 1
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &868442894
 GameObject:
   m_ObjectHideFlags: 0
