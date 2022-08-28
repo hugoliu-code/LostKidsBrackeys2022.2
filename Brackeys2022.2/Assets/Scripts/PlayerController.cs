@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
     public bool isEnteringBox;
     public bool isInBox;
     public bool isDead = false;
-    public int keyCount = 0; 
+    public int keyCount = 0;
+    public bool hasWon = false;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -135,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
     public void Death()
     {
-        if (isDead)
+        if (isDead || hasWon)
         {
             return;
         }

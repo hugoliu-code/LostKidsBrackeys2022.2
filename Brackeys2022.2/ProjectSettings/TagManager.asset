@@ -12,6 +12,7 @@ TagManager:
   - Dirt
   - Menu_Music
   - Level_Music
+  - Grass
   layers:
   - Default
   - TransparentFX

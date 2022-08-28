@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/StoryScene.unity
+    guid: c9988905b4b939d4b89a64325cc489c2
+  - enabled: 1
+    path: Assets/Scenes/Cutscene.unity
+    guid: 023cc335f044e5d45a76684e571ab085
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 1d61c545ed639b044adcfa11f088e8b2
   - enabled: 1
@@ -38,6 +44,27 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level7.unity
     guid: 0e6a0a26b3f8bc747b10787cb1461f6a
+  - enabled: 1
+    path: Assets/Scenes/Dialogue1.unity
+    guid: bb3a0ef7cf70c4747a2756b400ce8de3
+  - enabled: 1
+    path: Assets/Scenes/Dialogue2.unity
+    guid: 295b05635eff3ca48a621b5454fee4d2
+  - enabled: 1
+    path: Assets/Scenes/Dialogue3.unity
+    guid: a393106ed052ed242980328b34abf3e1
+  - enabled: 1
+    path: Assets/Scenes/Dialogue4.unity
+    guid: 18e986e39239d9742ada9155794f501c
+  - enabled: 1
+    path: Assets/Scenes/Dialogue5.unity
+    guid: e42a1752c303ad149b10f89adca08c5f
+  - enabled: 1
+    path: Assets/Scenes/Dialogue6.unity
+    guid: 8cb97ea3de8165e4b8260af47c33fce0
+  - enabled: 1
+    path: Assets/Scenes/Dialogue7.unity
+    guid: f69b8314a9753844e9a24aabf5d677e1
   - enabled: 1
     path: Assets/Scenes/EndScreen.unity
     guid: 5ad0c3a710daf844a8e14d019025ff8b

@@ -13,6 +13,8 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory;
 
+    private float nextContinueTime = 0;
+
     public bool dialogueIsPlaying;
     private void Awake()
     {
@@ -40,8 +42,9 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= nextContinueTime)
         {
+            nextContinueTime = Time.time + 0.1f;
             ContinueStory();
         }
     }
@@ -51,7 +54,7 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
-
+        nextContinueTime = Time.time + 0.1f;
         ContinueStory();
     }
     private IEnumerator ExitDialogueMode()

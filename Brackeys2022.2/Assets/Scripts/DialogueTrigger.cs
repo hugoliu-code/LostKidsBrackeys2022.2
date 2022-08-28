@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-
+    private bool firstInteraction = true;
     private InteractIcon icon;
     private bool playerInRange = false;
     [Header("Ink JSON")]
-    [SerializeField] private TextAsset inkJson;
+    [SerializeField] private TextAsset inkJsonOne;
+    [SerializeField] private TextAsset inkJsonTwo;
     private void Start()
     {
         icon = GetComponent<InteractIcon>();
@@ -21,7 +22,15 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJson);
+                if (firstInteraction)
+                {
+                    DialogueManager.GetInstance().EnterDialogueMode(inkJsonOne);
+                    firstInteraction = false;
+                }
+                else
+                {
+                    DialogueManager.GetInstance().EnterDialogueMode(inkJsonTwo);
+                }
             }
             icon.ShowIcon();
 
