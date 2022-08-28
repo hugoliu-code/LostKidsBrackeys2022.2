@@ -42266,7 +42266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5230538069682195783, guid: d46a8621c4127c241af887955bd7501d, type: 3}
       propertyPath: nextLevel
-      value: Dialogue4
+      value: Level3
       objectReference: {fileID: 0}
     - target: {fileID: 5230538069682195783, guid: d46a8621c4127c241af887955bd7501d, type: 3}
       propertyPath: keysNeeded

@@ -11,6 +11,7 @@ public class Cutscene : MonoBehaviour
     IEnumerator Cut()
     {
 
+        yield return new WaitForSeconds(2f);
         FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Death");
         yield return new WaitForSeconds(4f);
         FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Landing");
