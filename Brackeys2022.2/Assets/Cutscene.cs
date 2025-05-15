@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class Cutscene : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class Cutscene : MonoBehaviour
     IEnumerator Cut()
     {
 
-        yield return new WaitForSeconds(2f);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Death");
-        yield return new WaitForSeconds(4f);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Landing");
-        FindObjectOfType<SceneManagerScript>().SceneNav("Dialogue1");
+        yield return new WaitForSeconds(1f);
+        RuntimeManager.PlayOneShot("event:/Player/Player_Death");
+        yield return new WaitForSeconds(3f);
+        RuntimeManager.PlayOneShot("event:/Player/Player_Landing");
+        FindFirstObjectByType<SceneManagerScript>().SceneNav("Dialogue1");
     }
 
 }

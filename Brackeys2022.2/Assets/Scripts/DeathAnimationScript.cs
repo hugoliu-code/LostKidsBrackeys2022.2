@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class DeathAnimationScript : MonoBehaviour
 {
@@ -12,6 +13,6 @@ public class DeathAnimationScript : MonoBehaviour
     }
     public void PlaySound()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Disem");
+        RuntimeManager.PlayOneShot("event:/Player/Player_Disem");
     }
 }

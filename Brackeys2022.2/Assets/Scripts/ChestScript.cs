@@ -14,7 +14,7 @@ public class ChestScript : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        player = FindObjectOfType<PlayerController>();
+        player = FindFirstObjectByType<PlayerController>();
     }
     private void Update()
     {

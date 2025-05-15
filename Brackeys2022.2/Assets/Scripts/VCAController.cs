@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class VCAController : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class VCAController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        VcaController = FMODUnity.RuntimeManager.GetVCA("vca:/" + VcaName);
+        VcaController = RuntimeManager.GetVCA("vca:/" + VcaName);
         slider = GetComponent<Slider>();
     }
 

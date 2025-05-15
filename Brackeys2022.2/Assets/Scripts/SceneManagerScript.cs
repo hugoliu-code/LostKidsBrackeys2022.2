@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 public class SceneManagerScript : MonoBehaviour
 {
     public Animator transition;
@@ -22,7 +23,6 @@ public class SceneManagerScript : MonoBehaviour
         //Time.timeScale = 1f;
         //if (soundOn)
         //click.Play();
-        FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Confirm");
         StartCoroutine(LoadLevel(levelName));
     }
     public void FirstLevel()
@@ -42,13 +42,15 @@ public class SceneManagerScript : MonoBehaviour
     public void SettingSelect()
     {
         //Progress("Misc");
+        RuntimeManager.PlayOneShot("event:/UI/Confirm");
         StartCoroutine(LoadLevel("Settings"));
     }
 
     public void MainMenuSelect()
     {
         //Progress("Misc");
-        StartCoroutine(LoadLevel("StartMenu"));
+        RuntimeManager.PlayOneShot("event:/UI/Back");
+        StartCoroutine(LoadLevel("MainMenu"));
     }
 
     public void Quit()
@@ -60,7 +62,7 @@ public class SceneManagerScript : MonoBehaviour
     {
         transition.SetBool("Start", true);
         yield return new WaitForSeconds(0.2f);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Scene_Transition");
+        RuntimeManager.PlayOneShot("event:/UI/Scene_Transition");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(LevelName);
     }

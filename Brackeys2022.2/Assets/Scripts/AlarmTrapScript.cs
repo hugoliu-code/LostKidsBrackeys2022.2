@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class AlarmTrapScript : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class AlarmTrapScript : MonoBehaviour
 
     private void Start()
     {
-        monster = FindObjectOfType<WandererAI>();
+        monster = FindFirstObjectByType<WandererAI>();
         anim = GetComponent<Animator>();
     }
 
@@ -24,16 +25,16 @@ public class AlarmTrapScript : MonoBehaviour
     {
         if (collision.CompareTag("Player") && Time.time > coolDownFinishTime)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Button_Down");
+            RuntimeManager.PlayOneShot("event:/Interactibles/Button_Down");
             monster.ActivateTrap(transform.position);
             coolDownFinishTime = Time.time + trapCooldown;
-            Invoke("ButtonUpSound", trapCooldown);
+            Invoke(nameof(ButtonUpSound), trapCooldown);
         }
     }
 
     private void ButtonUpSound()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Button_Up");
+        RuntimeManager.PlayOneShot("event:/Interactibles/Button_Up");
     }
 
     void Animation()

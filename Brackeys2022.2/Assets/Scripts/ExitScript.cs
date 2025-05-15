@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class ExitScript : MonoBehaviour
 {
@@ -14,13 +15,13 @@ public class ExitScript : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<PlayerController>().keyCount >= keysNeeded)
             {
+                RuntimeManager.PlayOneShot("event:/Player/Ladder");
                 collision.gameObject.GetComponent<PlayerController>().hasWon = true;
                 sceneManager.LevelNav(nextLevel);
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Open_Door");
             }
             else
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Locked_Door");
+                RuntimeManager.PlayOneShot("event:/Interactibles/Locked_Door");
             }
         }
     }

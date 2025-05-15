@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
+using FMODUnity;
+using FMOD.Studio;
+
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] float runSpeed = 1;
-    [SerializeField] float puddleSpeed = 0.5f;
+    [SerializeField] float puddleSpeed = 0.8f;
     private float currentSpeed = 1;
     [SerializeField] Animator anim;
-    private Vector2 movementVector = new Vector2(0, 0);
+    private Vector2 movementVector = new(0, 0);
     private Rigidbody2D rb;
     [Header("Lights")]
-    [SerializeField] Light2D innerLight;
-    [SerializeField] Light2D outerLight;
+    [SerializeField] UnityEngine.Rendering.Universal.Light2D innerLight;
+    [SerializeField] UnityEngine.Rendering.Universal.Light2D outerLight;
     [SerializeField] float maxInnerLight;
     [SerializeField] float minInnerLight;
     [SerializeField] float maxOuterLight;
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject MonsterCollider;
     [SerializeField] GameObject spriteObject;
     [SerializeField] GameObject DeathObject;
-    private FMOD.Studio.EventInstance Footsteps;
+    private EventInstance Footsteps;
     [Header("Conditions")]
     public float enterChestTime;
     public bool isEnteringBox;
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
         currentSpeed = runSpeed;
         lightPercentage = 0;
         StartCoroutine(ChangePercentage(1f, 3f));
-        Footsteps = FMODUnity.RuntimeManager.CreateInstance("event:/UI/Static_Effect");
+        Footsteps = RuntimeManager.CreateInstance("event:/UI/Static_Effect");
         Cursor.visible = false;
     }
     void Update()
@@ -95,7 +97,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isInBox || isEnteringBox || isDead || DialogueManager.GetInstance().dialogueIsPlaying)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             anim.SetBool("Running", false);
             return;
         }
@@ -114,7 +116,7 @@ public class PlayerController : MonoBehaviour
         else
             anim.SetBool("Running", false);
 
-            rb.velocity = movementVector;
+            rb.linearVelocity = movementVector;
     }
 
     public void ChestToggle(bool toggle)
@@ -142,10 +144,10 @@ public class PlayerController : MonoBehaviour
         }
         isDead = true;
         StopAllCoroutines();
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Player_Death");
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Monster/Monster_Kill");
+        RuntimeManager.PlayOneShot("event:/Player/Player_Death");
+        RuntimeManager.PlayOneShot("event:/Monster/Monster_Kill");
         StartCoroutine(ChangePercentage(0f, 1f));
-        StartCoroutine("DeathCoroutine");
+        StartCoroutine(DeathCoroutine());
     }
     IEnumerator DeathCoroutine()
     {
@@ -166,7 +168,7 @@ public class PlayerController : MonoBehaviour
         {
             keyCount++;
             collision.gameObject.SetActive(false);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Key");
+            RuntimeManager.PlayOneShot("event:/Interactibles/Key");
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
