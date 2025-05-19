@@ -143,10 +143,10 @@ MonoBehaviour:
     HasValue: 0
   displaySortOrder: 0
   childIdentifiers:
-  - de700ef3f37a49b58a57ae3addf01ad9
   - c88d16e5272a4e241b0ef0ac2e53b73d
   - 46fbfdf3fc43db0458918377fd40293e
   - b7716510a1f36934c87976f3a81dbf3d
+  - de700ef3f37a49b58a57ae3addf01ad9
   - fd7c55dab0fce234b8c25f6ffca523c1
   - 52eb9df5db46521439908db3a29a1bbb
   - 2c5177b11d81d824dbb064f9ac8527da
@@ -390,8 +390,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../../FMOD Studio/Brack 22.2/Brack 22.2.fspro
-  sourceBankPath: ../../../../FMOD Studio/Brack 22.2/Build
+  sourceProjectPath: ../../../FMOD Studio/Brack 22.2/Brack 22.2.fspro
+  sourceBankPath: ../../../FMOD Studio/Brack 22.2/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 1
   ShowBankRefreshWindow: 0
@@ -426,16 +426,16 @@ MonoBehaviour:
   EnableErrorCallback: 0
   SharedLibraryUpdateStage: 0
   SharedLibraryTimeSinceStart: 0
-  CurrentVersion: 131624
+  CurrentVersion: 131847
   HideSetupWizard: 1
   LastEventReferenceScanVersion: 131591
   Platforms:
-  - {fileID: 414207306894194008}
   - {fileID: -5540318448541247393}
   - {fileID: -4743600951692440793}
   - {fileID: -4017967415938274422}
   - {fileID: -1621564042476701196}
   - {fileID: -1048440717325875140}
+  - {fileID: 414207306894194008}
   - {fileID: 4500222944242771204}
   - {fileID: 6421736979638936072}
   - {fileID: 6748862643555971586}
