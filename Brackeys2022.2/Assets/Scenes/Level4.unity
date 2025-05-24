@@ -1371,7 +1371,7 @@ GameObject:
   - component: {fileID: 703462252}
   m_Layer: 0
   m_Name: ' --- MonsterDestinations ---'
-  m_TagString: Untagged
+  m_TagString: MonsterDestinations
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8555,10 +8555,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7591679434726987664, guid: e420d8b7d49fda54baafd4b1a3c89eb2, type: 3}
-      propertyPath: puddleSpeed
-      value: 1.75
-      objectReference: {fileID: 0}
     - target: {fileID: 7591679434726987668, guid: e420d8b7d49fda54baafd4b1a3c89eb2, type: 3}
       propertyPath: m_Name
       value: ' *** Player ***'
@@ -8611,6 +8607,22 @@ PrefabInstance:
       propertyPath: DeathScreen
       value: 
       objectReference: {fileID: 1065667779}
+    - target: {fileID: 7591679435348503447, guid: e420d8b7d49fda54baafd4b1a3c89eb2, type: 3}
+      propertyPath: orthographic size
+      value: 7.640625
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591679435348503447, guid: e420d8b7d49fda54baafd4b1a3c89eb2, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0.0335277
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591679435348503447, guid: e420d8b7d49fda54baafd4b1a3c89eb2, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.93294466
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591679435348503447, guid: e420d8b7d49fda54baafd4b1a3c89eb2, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8955,7 +8967,7 @@ Transform:
   m_GameObject: {fileID: 2059938018}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.48, y: 2.13, z: 0}
+  m_LocalPosition: {x: -24.59, y: 1.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,98 +1,119 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ChestScript : MonoBehaviour
 {
-    private bool isInteracting = false;
+    [Header("Chest Settings")]
     [SerializeField] Transform enterMarker;
-    [SerializeField] Transform exitMarker;
     [SerializeField] GameObject physicalCollider;
     [SerializeField] InteractIcon icon;
-    private PlayerController player;
-    private Animator anim;
-    private void Start()
+    [SerializeField] float interactionCooldownTime = 1f;
+
+    Animator anim;
+    PlayerController player;
+
+    bool isPlayerNear = false;
+    bool isInteracting = false;
+    bool isExiting = false;
+    bool canInteract = true;
+
+    void Start()
     {
         anim = GetComponent<Animator>();
         player = FindFirstObjectByType<PlayerController>();
     }
-    private void Update()
+
+    void Update()
     {
-        if (isInteracting && Input.GetKeyDown(KeyCode.Space) && !player.isEnteringBox && !player.isDead && player.isInBox)
+        if (!isPlayerNear || player == null || player.isDead || !canInteract)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            ExitChest();
+            if (player.isInBox && !player.isEnteringBox)
+            {
+                BeginExit();
+            }
+            else if (!isInteracting && !player.isInBox && !player.isEnteringBox)
+            {
+                BeginEnter();
+            }
         }
+
         if (isInteracting)
-        {
             icon.HideIcon();
-        }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+
+    void BeginEnter()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && collision.CompareTag("Player") && !isInteracting && !player.isInBox && !player.isEnteringBox)
+        isInteracting = true;
+        isExiting = false;
+        canInteract = false;
+
+        player.isEnteringBox = true;
+        anim.SetBool("IsOpening", true);
+        physicalCollider.SetActive(false);
+
+        StartCoroutine(player.MovePlayer(player.transform.position, enterMarker.position, player.enterChestTime));
+        StartCoroutine(player.ChangePercentage(0.3f, player.enterChestTime));
+        Invoke(nameof(ResetInteraction), interactionCooldownTime);
+    }
+
+    void BeginExit()
+    {
+        isInteracting = true;
+        isExiting = true;
+        canInteract = false;
+
+        anim.SetBool("IsOpening", true);
+        physicalCollider.SetActive(true);
+        icon.ShowIcon();
+
+        StartCoroutine(player.ChangePercentage(1f, player.enterChestTime));
+        Invoke(nameof(ResetInteraction), interactionCooldownTime);
+    }
+
+    public void OnChestAnimationComplete()
+    {
+        anim.SetBool("IsOpening", false);
+
+        if (isExiting)
         {
-            EnterChest();
+            player.ChestToggle(true);
+            player.isInBox = false;
         }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            icon.ShowIcon();
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            icon.HideIcon();
-        }
-    }
-    public void Toggle()
-    {
-        if (isInteracting)
+        else
         {
             player.ChestToggle(false);
             player.isInBox = true;
             player.isEnteringBox = false;
-            anim.SetBool("IsOpening", false);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Chest_Open");
         }
-        else
-        {
-            player.ChestToggle(true);
-            player.isInBox = false;
-            anim.SetBool("IsOpening", false);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Chest_Open");
-        }
-        
-    }
-    private void EnterChest()
-    {
-        
-        isInteracting = true;
-        //do the native chest animation
-        anim.SetBool("IsOpening", true);
-        //Remove The chest's collider
-        physicalCollider.SetActive(false);
-        //Move player towards chest
-        player.isEnteringBox = true;
-        StartCoroutine(player.MovePlayer(player.transform.position, enterMarker.position, player.enterChestTime));
-        //Diminish player's light
-        StartCoroutine(player.ChangePercentage(0.3f, player.enterChestTime));
 
-    }
-    private void ExitChest()
-    {
         isInteracting = false;
-        anim.SetBool("IsOpening", true);
-        physicalCollider.SetActive(true);
-        icon.ShowIcon();
-        StartCoroutine(player.ChangePercentage(1f, player.enterChestTime));
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Interactibles/Chest_Open");
     }
-    private void InteractOff()
+
+    void ResetInteraction()
     {
-        isInteracting = false;
+        canInteract = true;
     }
-    
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNear = true;
+            if (!player.isInBox)
+                icon.ShowIcon();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNear = false;
+            icon.HideIcon();
+        }
+    }
 }

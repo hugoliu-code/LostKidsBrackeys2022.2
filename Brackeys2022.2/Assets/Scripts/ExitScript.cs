@@ -1,41 +1,71 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 
 public class ExitScript : MonoBehaviour
 {
-    [SerializeField] InteractIcon icon;
-    [SerializeField] int keysNeeded = 3;
-    [SerializeField] SceneManagerScript sceneManager;
-    [SerializeField] string nextLevel;
-    private void OnTriggerStay2D(Collider2D collision)
+    [SerializeField] private InteractIcon icon;
+    [Tooltip("Number of keys required to exit")]
+    [SerializeField] private int keysNeeded = 3;
+    [SerializeField] private SceneManagerScript sceneManager;
+    [SerializeField] private string nextLevel;
+    [Tooltip("Cooldown after interacting (seconds)")]
+    [SerializeField] private float interactionCooldown = 0.5f;
+
+    private bool isPlayerNear = false;
+    private bool canInteract = true;
+    private PlayerController player;
+
+    private void Update()
     {
-        if (collision.CompareTag("Player") && Input.GetKeyDown(KeyCode.Space))
+        if (!isPlayerNear || player == null || player.isDead || !canInteract)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (collision.gameObject.GetComponent<PlayerController>().keyCount >= keysNeeded)
-            {
-                RuntimeManager.PlayOneShot("event:/Player/Ladder");
-                collision.gameObject.GetComponent<PlayerController>().hasWon = true;
-                sceneManager.LevelNav(nextLevel);
-            }
-            else
-            {
-                RuntimeManager.PlayOneShot("event:/Interactibles/Locked_Door");
-            }
+            AttemptExit();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void AttemptExit()
     {
-        if (collision.CompareTag("Player"))
+        canInteract = false;
+
+        if (player.keyCount >= keysNeeded)
         {
-            icon.ShowIcon();
-        }   
+            RuntimeManager.PlayOneShot("event:/Interactibles/Open_Door");
+            player.hasWon = true;
+            sceneManager.LevelNav(nextLevel);
+        }
+        else
+        {
+            RuntimeManager.PlayOneShot("event:/Interactibles/Locked_Door");
+        }
+
+        StartCoroutine(ResetInteraction());
     }
-    private void OnTriggerExit2D(Collider2D collision)
+
+    private IEnumerator ResetInteraction()
     {
-        if (collision.CompareTag("Player"))
+        yield return new WaitForSeconds(interactionCooldown);
+        canInteract = true;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
+            player = other.GetComponent<PlayerController>();
+            isPlayerNear = true;
+            icon.ShowIcon();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNear = false;
             icon.HideIcon();
         }
     }

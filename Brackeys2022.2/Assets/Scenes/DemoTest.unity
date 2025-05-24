@@ -17130,7 +17130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6034441601938449311, guid: 80982a111321d8941b09ca1a11a01092, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17219,7 +17219,7 @@ PrefabInstance:
       objectReference: {fileID: 549926402}
     - target: {fileID: 7591679435348503447, guid: e420d8b7d49fda54baafd4b1a3c89eb2, type: 3}
       propertyPath: orthographic size
-      value: 5.625
+      value: 5.921875
       objectReference: {fileID: 0}
     - target: {fileID: 7591679435348503447, guid: e420d8b7d49fda54baafd4b1a3c89eb2, type: 3}
       propertyPath: m_NormalizedViewPortRect.x

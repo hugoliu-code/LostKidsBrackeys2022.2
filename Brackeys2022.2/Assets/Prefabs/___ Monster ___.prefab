@@ -219,16 +219,18 @@ MonoBehaviour:
   chaseSpeed: 2.7
   wanderSpeed: 1.6
   maxRange: 12
+  detectionDelay: 0.5
   detectionLayer:
     serializedVersion: 2
     m_Bits: 2176
   maxLightEffectDistance: 5
   minLightPercentage: 0.3
   playerKillDistance: 1
+  boxDeaggroTime: 6
+  boxDeaggroRadius: 10
   maxSoundDist: 35
   maxBounces: 3
   dirRayCount: 15
   spatRayCount: 6
   dirConeAngle: 60
-  spatConeAngle: 300
   playerHitRadius: 4

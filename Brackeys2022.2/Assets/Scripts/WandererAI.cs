@@ -42,6 +42,11 @@ public class WandererAI : MonoBehaviour
     [Tooltip("Distance at which the monster kills the player instantly")]
     [SerializeField] private float playerKillDistance = 1f;
 
+    [Tooltip("Seconds the player must remain in a box before the monster de-aggros")]
+    [SerializeField] private float boxDeaggroTime = 5f;
+    [SerializeField] private float boxDeaggroRadius = 5f;
+    private float boxTimer = 0f;
+
     [Header("FMOD Occlusion Settings")]
     [Tooltip("Max distance used for audio occlusion raycasts")]
     [SerializeField] private float maxSoundDist = 35f;
@@ -103,9 +108,11 @@ public class WandererAI : MonoBehaviour
         aiPath = GetComponent<AIPath>();
         rb = GetComponent<Rigidbody2D>();
 
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerController>();
+        playerScript = FindFirstObjectByType<PlayerController>();
+        player = playerScript.gameObject;
         playerT = player.transform;
+
+
         listener = FindFirstObjectByType<StudioListener>();
         listenerT = listener.transform;
 
@@ -121,8 +128,9 @@ public class WandererAI : MonoBehaviour
     void Update()
     {
         #if UNITY_EDITOR
-            DrawDebugCircle(listenerT.position, playerHitRadius, 32, Color.cyan);
+            DrawDebugCircle(listenerT.position, playerHitRadius, 5, Color.cyan);
         #endif
+
         UpdateMoveDir(); // Updates movement/facing direction
         UpdateAIState(); // AI state decision tree
         UpdateSpatOcclusion();
@@ -177,7 +185,6 @@ public class WandererAI : MonoBehaviour
             if (CanSeePlayer())
             {
                 detectionTimer += Time.deltaTime;
-
                 if (detectionTimer >= detectionDelay)
                 {
                     HandleChasing(true);
@@ -189,7 +196,6 @@ public class WandererAI : MonoBehaviour
                 detectionTimer = 0f;
                 HandleWandering();
             }
-
             return;
         }
 
@@ -199,21 +205,44 @@ public class WandererAI : MonoBehaviour
             lastKnownPlayerPos = playerT.position;
             ai.destination = playerT.position;
         }
-        else if (!hasLostSight)
-        {
-            // Just lost sight of player
-            hasLostSight = true;
-            ai.destination = lastKnownPlayerPos;
-        }
-        else if (hasLostSight && AtDestination())
-        {
-            // Reached last seen spot, go back to wandering
-            chasingPlayer = false;
-            HandleWandering();
-        }
         else
         {
-            ai.destination = lastKnownPlayerPos;
+            if (!hasLostSight)
+            {
+                // Just lost sight of player
+                hasLostSight = true;
+                ai.destination = lastKnownPlayerPos;
+            }
+            else
+            {
+                if (playerScript.isInBox)
+                {
+                    float distToPlayer = Vector2.Distance(transform.position, playerT.position);
+                    if (distToPlayer <= boxDeaggroRadius)
+                    {
+                        boxTimer += Time.deltaTime;
+                        if (boxTimer >= boxDeaggroTime)
+                        {
+                            Relocate();
+                            boxTimer = 0f;
+                            return; // Skip the rest, so it truly deaggros this frame
+                        }
+                    }
+                    else boxTimer = 0f;
+                    return;
+                }
+                // If player is not in box, reset timer and continue going to last known
+                boxTimer = 0f;
+
+                if (AtDestination())
+                {
+                    chasingPlayer = false;
+                    HandleWandering();
+                    return;
+                }
+
+                ai.destination = lastKnownPlayerPos;
+            }
         }
 
         aiPath.maxSpeed = chasingPlayer ? chaseSpeed : wanderSpeed;
@@ -247,6 +276,41 @@ public class WandererAI : MonoBehaviour
         }
         chasingPlayer = false;
         aiPath.maxSpeed = wanderSpeed;
+    }
+
+    void Relocate()
+    {
+        chasingPlayer = false;
+        hasLostSight = false;
+        detectionTimer = 0f;
+
+        if (wanderPoints.Count > 0)
+        {
+            Vector2 newPos = transform.position;
+            bool found = false;
+
+            // Try up to 10 times to find a waypoint far enough from the player
+            for (int i = 0; i < 10; i++)
+            {
+                int idx = Random.Range(0, wanderPoints.Count);
+                Vector2 pt = wanderPoints[idx];
+                if (Vector2.Distance(pt, playerT.position) >= playerKillDistance * 3f)
+                {
+                    newPos = pt;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                int idxFallback = Random.Range(0, wanderPoints.Count);
+                newPos = wanderPoints[idxFallback];
+            }
+
+            transform.position = newPos;
+        }
+
+        boxTimer = 0f;
     }
 
     /// <summary>Pick a new random destination, avoiding repeating the last one.</summary>
@@ -408,6 +472,7 @@ public class WandererAI : MonoBehaviour
         ai.destination = trapPos;
         chasingPlayer = false;
         stopChasingTime = -1f;
+        aiPath.maxSpeed = chaseSpeed;
         UpdateDirOcclusion();
         PlaySound("event:/Monster/Monster_Screech");
     }
@@ -418,9 +483,8 @@ public class WandererAI : MonoBehaviour
     void PlaySound(string path)
     {
         var instance = RuntimeManager.CreateInstance(path);
-        RuntimeManager.AttachInstanceToGameObject(instance,
-                                                  transform,
-                                                  rb);
+        RuntimeManager.AttachInstanceToGameObject(instance, gameObject);
+
         if (playerScript)
         {
             RuntimeManager.StudioSystem

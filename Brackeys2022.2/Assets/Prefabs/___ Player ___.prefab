@@ -9965,7 +9965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 3
-  puddleSpeed: 1
+  puddleSpeed: 2
   anim: {fileID: 7591679436009371615}
   innerLight: {fileID: 7591679435152553526}
   outerLight: {fileID: 7591679435407750576}
@@ -10445,10 +10445,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.18854168
+    x: 0.020802377
     y: 0
-    width: 0.16666667
-    height: 0.3037037
+    width: 0.4754829
+    height: 2.3666139
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
